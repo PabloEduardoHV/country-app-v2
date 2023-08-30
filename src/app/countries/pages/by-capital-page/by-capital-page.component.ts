@@ -10,16 +10,22 @@ import { Country } from '../../interfaces/country.interface';
 export class ByCapitalPageComponent {
   /* Propiedades */
   public countries: Country[] = [];
+  public isLoading: boolean = false;
+  public userAlreadySearchedACountry: boolean;
+  private endpoint: string = 'capital';
 
 
   /* Metodos */
   constructor(private countriesService: CountriesService) {
-
+    this.userAlreadySearchedACountry = false;
   }
-  public searchByCapital(term: string): void {
-    this.countriesService.searchCapital(term)
+  public searchByCapital(capital: string): void {
+    this.isLoading = true;
+    this.countriesService.getCountryRequest(capital, this.endpoint)
     .subscribe( countries => {
       this.countries = countries;
+      this.isLoading = false;
+      this.userAlreadySearchedACountry = true;
     } );
   }
 }

@@ -10,15 +10,22 @@ import { CountriesService } from '../../services/countries.service';
 export class ByRegionPageComponent {
   /* Propiedades */
   public countries: Country[] = [];
+  public isLoading: boolean;
+  public userAlreadySearchedACountry: boolean;
+  private endpoint: string = 'region';
 
   /* Metodos */
   constructor(private countriesService: CountriesService) {
-
+    this.isLoading = false;
+    this.userAlreadySearchedACountry = false;
   }
   public searchByRegion(region: string) {
-    this.countriesService.searchRegion(region)
+    this.isLoading = true;
+    this.countriesService.getCountryRequest(region, this.endpoint)
     .subscribe(countries => {
       this.countries = countries;
+      this.isLoading = false;
+      this.userAlreadySearchedACountry = true;
     });
   }
 }

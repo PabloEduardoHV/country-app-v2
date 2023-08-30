@@ -10,7 +10,12 @@ export class CountryTableComponent {
   /* Propiedades */
   @Input()
   public countries: Country[] = [];
+  @Input()
+  public userAlreadySearchedACountry: boolean;
 
   /* Metodos */
+  constructor() {
+    this.userAlreadySearchedACountry = false;
+  }
 
 }

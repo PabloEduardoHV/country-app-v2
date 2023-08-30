@@ -1,10 +1,10 @@
 <div
   class="alert alert-warning text-center"
-  *ngIf="countries.length === 0; else table"
+  *ngIf="countries.length === 0 && userAlreadySearchedACountry === true"
 >
-  No hay países para mostrar
+  No results
 </div>
-<ng-template #table>
+<div *ngIf="countries.length > 0">
   <table class="table table-hover">
     <thead>
       <tr>
@@ -33,4 +33,4 @@
       </tr>
     </tbody>
   </table>
-</ng-template>
+</div>
