@@ -24,8 +24,7 @@ export class CountriesService {
   public getCountryRequest(term: string, endpoint: string): Observable<Country[]> {
     return this.http.get<Country[]>(`${this.apiUrl}/${endpoint}/${term.toLowerCase()}`)
     .pipe(
-      catchError( error => of([]) ),
-      delay(2000)
+      catchError( error => of([]) )
     );
   }
 }

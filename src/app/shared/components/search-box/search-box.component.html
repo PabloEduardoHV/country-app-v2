@@ -1,8 +1,9 @@
+<!-- (keyup.enter)="emitSearchboxInputValue()" -->
 <input
+  #searchboxInput
   type="text"
   class="form-control"
   [placeholder]="placeholder"
-  #searchboxInput
-  (keyup.enter)="emitSearchboxInputValue()"
+  (keyup)="onKeyPressed(searchboxInput.value)"
 >
 <hr>
